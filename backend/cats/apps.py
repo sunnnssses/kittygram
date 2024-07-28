@@ -1,3 +1,4 @@
+"""Apps for cats project."""
 from django.apps import AppConfig
 
 

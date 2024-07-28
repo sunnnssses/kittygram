@@ -1,3 +1,5 @@
+"""Urls for kittygram_backend."""
+
 from cats.views import AchievementViewSet, CatViewSet
 from django.conf import settings
 from django.conf.urls.static import static

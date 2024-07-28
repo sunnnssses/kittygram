@@ -1,3 +1,4 @@
+"""Setiings for kittygram_backend."""
 # flake8: noqa
 import os
 from pathlib import Path

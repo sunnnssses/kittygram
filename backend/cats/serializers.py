@@ -1,3 +1,5 @@
+"""Serializares for cats project."""
+
 import base64
 import datetime as dt
 
