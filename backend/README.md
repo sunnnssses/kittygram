@@ -1,51 +1,47 @@
-### Как запустить проект:
+[![Main Kittygram Workflow](https://github.com/sunnnssses/kittygram_final/actions/workflows/main.yml/badge.svg)](https://github.com/sunnnssses/kittygram_final/actions/workflows/main.yml)
 
+# Kittygram
+
+## Описание проекта
+Kittygram — это сервис, с помощью которого вы можете делиться фотографиями и достижениями своих котиков!
+
+## Стек
+- Python 3.9
+- Django 3.2.16
+- Nginx
+- Docker
+
+## Как развернуть проект
 Клонировать репозиторий и перейти в него в командной строке:
-
 ```
-git clone https://github.com/yandex-praktikum/kittygram_backend.git
+git clone https://github.com/sunnnssses/kittygram_final
 ```
-
 ```
-cd kittygram_backend
+cd kittygram_final
 ```
-
-Cоздать и активировать виртуальное окружение:
-
+Выполнить запуск командой
 ```
-python3 -m venv env
+sudo docker compose -f docker-compose.production.yml up -d
 ```
-
-* Если у вас Linux/macOS
-
-    ```
-    source env/bin/activate
-    ```
-
-* Если у вас windows
-
-    ```
-    source env/scripts/activate
-    ```
-
+После запуска применить миграцию
 ```
-python3 -m pip install --upgrade pip
+sudo docker compose -f docker-compose.production.yml exec backend python manage.py migrate
+```
+Выполнить сбор статики
+```
+sudo docker compose -f docker-compose.production.yml exec backend python manage.py collectstatic
+sudo docker compose -f docker-compose.production.yml exec backend cp -r /app/collected_static/. /backend_static/static/
 ```
 
-Установить зависимости из файла requirements.txt:
+## Заполнение .env
+Для работы проекта необходимо создать и заполнить файл .env следующими переменными окружения:
+- POSTGRES_DB=kittygram
+- POSTGRES_USER=user
+- POSTGRES_PASSWORD=password
+- DB_HOST=db
+- DB_PORT=5432
+- SECRET_KEY='secret_key'
+- DEBUG=True
+- ALLOWED_HOSTS='exmaple.net, 12.345.56.789'
 
-```
-pip install -r requirements.txt
-```
-
-Выполнить миграции:
-
-```
-python3 manage.py migrate
-```
-
-Запустить проект:
-
-```
-python3 manage.py runserver
-```
+##### Автор: sunnnssses
